@@ -11,30 +11,40 @@ angular.module("umbraco").controller("faq.listing.editor.controller", function($
 	};
 
 	/**
-	* @method createRtePropertyEditorForItems
+	* @method createPropertyEditorsForItems
 	* @param {array of faq.Models.FAQItem} items
 	* @description Build a series of RTE property editors for each item, and add them to $scope.rteProperties;
 	*/
-	$scope.createRtePropertyEditorForItems = function(items) {
+	$scope.createPropertyEditorsForItems = function(items) {
 		if (items && items.length > 0) {
 			items.forEach(function(item, index) {
-				var newRteProperty = new faq.Models.RTEProperty({
+				var newRteProperty = new faq.Models.UmbracoProperty({
 					label: 'Answer',
 					description: '',
 					value: item.answer
 				});
+				var newTagProperty = new faq.Models.UmbracoProperty({
+					label: 'Categories',
+					description: '',
+					value: item.categories,
+					view: 'tags'
+				});
 				$scope.rteProperties.push(newRteProperty);
+				$scope.tagProperties.push(newTagProperty);
 			});
 		}
 	};
 
 	/**
-	* @method watchForRtePropertiesUpdates
+	* @method watchForPropertyUpdates
 	* @description Activates a $scope.$watch to listen for updates to the rteProperties in the property editors, and then update the answers accordingly.
 	*/
-	$scope.watchForRtePropertiesUpdates = function() {
+	$scope.watchForPropertyUpdates = function() {
 		$scope.$watch('rteProperties', function () {
 			$scope.handleRtePropertyEditorUpdate($scope.rteProperties);
+		}, true);
+		$scope.$watch('tagProperties', function () {
+			$scope.handleTagPropertyEditorUpdate($scope.tagProperties);
 		}, true);
 	};
 
@@ -44,6 +54,7 @@ angular.module("umbraco").controller("faq.listing.editor.controller", function($
 	*/
 	$scope.setVariables = function() {
 		$scope.rteProperties = [];
+		$scope.tagProperties = [];
 		var value = new faq.Models.FAQListing();
 		if ($scope.model.value) {
 			value = new faq.Models.FAQListing($scope.model.value);
@@ -53,8 +64,8 @@ angular.module("umbraco").controller("faq.listing.editor.controller", function($
 			var newItem = new faq.Models.FAQItem();
 			value.items.push(newItem);
 		}
-		$scope.createRtePropertyEditorForItems(value.items);
-		$scope.watchForRtePropertiesUpdates();
+		$scope.createPropertyEditorsForItems(value.items);
+		$scope.watchForPropertyUpdates();
 		$scope.model.value = value;
 	};
 
@@ -66,13 +77,20 @@ angular.module("umbraco").controller("faq.listing.editor.controller", function($
 	*/
 	$scope.addItem = function() {
 		var newItem = new faq.Models.FAQItem();
-		var newRteProperty = new faq.Models.RTEProperty({
+		var newRteProperty = new faq.Models.UmbracoProperty({
 			label: 'Answer',
 			description: '',
 			value: ''
 		});
+		var newTagProperty = new faq.Models.UmbracoProperty({
+			label: 'Categories',
+			description: '',
+			value: '',
+			view: 'tags'
+		});
 		$scope.model.value.items.push(newItem);
 		$scope.rteProperties.push(newRteProperty);
+		$scope.tagProperties.push(newTagProperty);
 	};
 
 	/**
@@ -86,13 +104,26 @@ angular.module("umbraco").controller("faq.listing.editor.controller", function($
 
 	/**
 	* @method handleRtePropertyEditorUpdate
-	* @param {array of faq.Models.RTEProperty} properties
+	* @param {array of faq.Models.Umbraco} properties
 	* @description Updates the $scope.model.value with any changes to the answers via the property editors.
 	*/
 	$scope.handleRtePropertyEditorUpdate = function(properties) {
 		if (properties && properties.length) {
 			properties.forEach(function(property, index) {
 				$scope.model.value.items[index].answer = property.value;
+			});
+		}
+	};
+
+	/**
+	* @method handleTagPropertyEditorUpdate
+	* @param {array of faq.Models.Umbraco} properties
+	* @description Updates the $scope.model.value with any changes to the categories via the property editors.
+	*/
+	$scope.handleTagPropertyEditorUpdate = function(properties) {
+		if (properties && properties.length) {
+			properties.forEach(function(property, index) {
+				$scope.model.value.items[index].categories = property.value;
 			});
 		}
 	};

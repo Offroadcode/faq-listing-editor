@@ -54,8 +54,8 @@
 	};
 
 	/**
-	* @class RTEProperty
-	* @class RTEProperty
+	* @class UmbracoProperty
+	* @class UmbracoProperty
 	* @param {JSON} data
 	* @param {string} data.label
 	* @param {string} data.description;
@@ -63,15 +63,15 @@
 	* @param {JSON} data.config
 	* @param {faq.Models.RTEPropertyEditorConfig} data.config.editor
 	* @param {string} data.value
-	* @description A Class representing the data needed to create a RTE Property Editor.
+	* @description A Class representing the data needed to create a Umbraco Property Editor.
 	*/
-	models.RTEProperty = function(data) {
+	models.UmbracoProperty = function(data) {
 		var self = this;
 		self.label = 'bodyText';
 		self.description = 'Load some stuff here';
 		self.view = 'rte';
-		self.config = {
-			editor: new faq.Models.RTEPropertyEditorConfig()
+		self.validation = {
+			mandatory: false
 		};
 		self.value = '';
 		if (data !== undefined) {
@@ -84,10 +84,25 @@
 			if (data.view !== undefined) {
 				self.view = data.view;
 			}
-			if (data.config !== undefined) {
+			if (data.view === 'rte' || data.view === undefined) {
+				// If no view defined, it's a RTE by default, so add default RTE editor config.
 				self.config = {
-					editor: new faq.Models.RTEPropertyEditorConfig(data.config.editor)
+					editor: new faq.Models.RTEPropertyEditorConfig()
 				};
+			} else if (data.view === 'tags') {
+				self.config = {
+					group: 'faq',
+					storageType: 'Json'
+				};
+			}
+			if (data.config !== undefined) {
+				if (data.config.editor !== undefined) {
+					self.config = {
+						editor: new faq.Models.RTEPropertyEditorConfig(data.config.editor)
+					};
+				} else {
+					self.config = data.config;
+				}
 			}
 			if (data.value !== undefined) {
 				self.value = data.value;

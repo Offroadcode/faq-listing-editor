@@ -11,10 +11,11 @@
 				<umb-editor model="rteProperties[$index]"></umb-editor>
 			</umb-property>
 		</div>
-		<label>
-			<span>Categories:</span>
-			<input type="text" ng-model="item.categories" />
-		</label>
+		<div ng-if="tagProperties[$index]">
+			<umb-property property="tagProperties[$index]">
+				<umb-editor model="tagProperties[$index]"></umb-editor>
+			</umb-property>
+		</div>
 		<button type="button" ng-click="deleteItem($index)">X</button>
 		<button type="button" ng-show="$last" ng-click="addItem()">+</button>
 	</div>
