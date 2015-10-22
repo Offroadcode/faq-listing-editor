@@ -1,0 +1,21 @@
+<div ng-controller="faq.listing.editor.controller">
+	<div ng-repeat="item in model.value.items track by $index">
+		<div>
+			<label>
+				<span>Question:</span>
+				<input type="text" ng-model="item.question" />
+			</label>
+		</div>
+		<div ng-if="rteProperties[$index]">
+			<umb-property property="rteProperties[$index]">
+				<umb-editor model="rteProperties[$index]"></umb-editor>
+			</umb-property>
+		</div>
+		<label>
+			<span>Categories:</span>
+			<input type="text" ng-model="item.categories" />
+		</label>
+		<button type="button" ng-click="deleteItem($index)">X</button>
+		<button type="button" ng-show="$last" ng-click="addItem()">+</button>
+	</div>
+</div>

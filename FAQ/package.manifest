@@ -1,0 +1,13 @@
+{
+	propertyEditors: [{
+		name: "FAQ Listing Editor",
+		alias: "faq.listing.editor",
+		editor: {
+			view: "~/app_plugins/FAQ/views/FAQListingEditorView.html",
+			valueType: "JSON"
+		}
+	}],
+	javascript: [
+		"~/app_plugins/FAQ/js/faq.js"
+	]
+}
