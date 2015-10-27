@@ -132,5 +132,5 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.registerTask('default', ['concat', 'copy:converter', 'copy:html', 'copy:manifest', 'copy:models','msbuild:dist', 'copy:dll']);
+  grunt.registerTask('default', ['concat', 'copy:converter', 'copy:html', 'copy:manifest', 'copy:models', 'msbuild:dist', 'copy:dll']);
 };
