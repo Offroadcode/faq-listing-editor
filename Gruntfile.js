@@ -16,7 +16,7 @@ module.exports = function(grunt) {
       },
       dll: {
         files: ['FAQ/Umbraco/FAQPackage/**/*.cs'] ,
-        tasks: ['msbuild:dist, copy:dll']
+        tasks: ['msbuild:dist', 'copy:dll']
       },
       js: {
         files: ['FAQ/**/*.js'],
