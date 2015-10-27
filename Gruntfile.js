@@ -6,13 +6,17 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     pkgMeta: grunt.file.readJSON('config/meta.json'),
-    dest: grunt.option('target') || 'Umbraco',
+    dest: grunt.option('target') || 'dist',
     basePath: path.join('<%= dest %>', 'App_Plugins', '<%= pkgMeta.name %>'),
 
     watch: {
       options: {
         spawn: false,
         atBegin: true
+      },
+      dll: {
+        files: ['FAQ/Umbraco/App_Code/**/*.cs'] ,
+        tasks: ['msbuild:dist, copy:dll']
       },
       js: {
         files: ['FAQ/**/*.js'],
@@ -21,7 +25,11 @@ module.exports = function(grunt) {
       html: {
         files: ['FAQ/**/*.html'],
         tasks: ['copy:html', 'copy:manifest']
-      }
+      },
+	  manifest: {
+		files: ['FAQ/package.manifest'],
+		tasks: ['copy:html', 'copy:manifest']
+	  }
     },
 
     concat: {
@@ -40,28 +48,57 @@ module.exports = function(grunt) {
     },
 
     copy: {
-      html: {
-        cwd: 'FAQ/views/',
-        src: [
-            'FAQListingEditorView.html'
-        ],
-        dest: '<%= basePath %>/views/',
-        expand: true,
-        rename: function(dest, src) {
-            return dest + src;
-          }
-      },
-      manifest: {
-          cwd: 'FAQ/',
-          src: [
-              'package.manifest'
-          ],
-          dest: '<%= basePath %>/',
-          expand: true,
-          rename: function(dest, src) {
-              return dest + src;
-          }
-      }
+        converter: {
+            cwd: 'FAQ/Umbraco/App_Code/Converters/',
+    		src: [
+    			'FAQListingPropertyValueConverter.cs'
+    		],
+    		dest: '<%= dest %>/App_Code/Converters/',
+    		expand: true,
+    		rename: function(dest, src) {
+    			return dest + src;
+    		}
+        },
+        dll: {
+            cwd: 'src/bin',
+            src: 'FAQPackage.dll',
+            dest: '<%= dest %>/bin/',
+            expand: true
+        },
+        html: {
+            cwd: 'FAQ/views/',
+            src: [
+                'FAQListingEditorView.html'
+            ],
+            dest: '<%= basePath %>/views/',
+            expand: true,
+            rename: function(dest, src) {
+                return dest + src;
+              }
+        },
+        manifest: {
+            cwd: 'FAQ/',
+            src: [
+                'package.manifest'
+            ],
+            dest: '<%= basePath %>/',
+            expand: true,
+            rename: function(dest, src) {
+                return dest + src;
+            }
+        },
+        models: {
+            cwd: 'FAQ/Umbraco/App_Code/Models/',
+            src: [
+                'FAQItem.cs',
+                'FAQListing.cs'
+            ],
+            dest: '<%= dest %>/App_Code/Models/',
+            expand: true,
+            rename: function(dest, src) {
+                return dest + src;
+            }
+       }
     },
 
     jshint: {
@@ -71,9 +108,29 @@ module.exports = function(grunt) {
       src: {
         src: ['app/**/*.js', 'lib/**/*.js']
       }
+  },
+
+  msbuild: {
+      options: {
+        stdout: true,
+        verbosity: 'quiet',
+        maxCpuCount: 4,
+        version: 4.0,
+        buildParameters: {
+          WarningLevel: 2,
+          NoWarn: 1607
+        }
+    },
+    dist: {
+        src: ['src/MyPackage.csproj'],
+        options: {
+            projectConfiguration: 'Debug',
+            targets: ['Clean', 'Rebuild'],
+        }
     }
+  }
 
   });
 
-  grunt.registerTask('default', ['concat', 'copy:html', 'copy:manifest']);
+  grunt.registerTask('default', ['concat', 'copy:converter', 'copy:html', 'copy:manifest', 'copy:models']);
 };
