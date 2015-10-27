@@ -14,9 +14,9 @@ module.exports = function(grunt) {
         spawn: false,
         atBegin: true
       },
-      converter: {
-          files: ['FAQ/Umbraco/App_Code/Converters/*.cs'],
-          tasks: ['copy:converter']
+      dll: {
+        files: ['FAQ/Umbraco/App_Code/**/*.cs'] ,
+        tasks: ['msbuild:dist, copy:dll']
       },
       js: {
         files: ['FAQ/**/*.js'],
@@ -29,10 +29,6 @@ module.exports = function(grunt) {
 	  manifest: {
 		files: ['FAQ/package.manifest'],
 		tasks: ['copy:html', 'copy:manifest']
-	  },
-	  models: {
-		files: ['FAQ/Umbraco/App_Code/Models/*.cs'],
-		tasks: ['copy:models']
 	  }
     },
 
@@ -62,6 +58,12 @@ module.exports = function(grunt) {
     		rename: function(dest, src) {
     			return dest + src;
     		}
+        },
+        dll: {
+            cwd: 'src/bin',
+            src: 'FAQPackage.dll',
+            dest: '<%= dest %>/bin/',
+            expand: true
         },
         html: {
             cwd: 'FAQ/views/',
@@ -106,7 +108,27 @@ module.exports = function(grunt) {
       src: {
         src: ['app/**/*.js', 'lib/**/*.js']
       }
+  },
+
+  msbuild: {
+      options: {
+        stdout: true,
+        verbosity: 'quiet',
+        maxCpuCount: 4,
+        version: 4.0,
+        buildParameters: {
+          WarningLevel: 2,
+          NoWarn: 1607
+        }
+    },
+    dist: {
+        src: ['src/MyPackage.csproj'],
+        options: {
+            projectConfiguration: 'Debug',
+            targets: ['Clean', 'Rebuild'],
+        }
     }
+  }
 
   });
 
