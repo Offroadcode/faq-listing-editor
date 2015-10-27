@@ -4,7 +4,8 @@
 		alias: "faq.listing.editor",
 		editor: {
 			view: "~/app_plugins/FAQ/views/FAQListingEditorView.html",
-			valueType: "JSON"
+			valueType: "JSON",
+			hideLabel: true
 		}
 	}],
 	javascript: [
