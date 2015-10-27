@@ -15,7 +15,7 @@ module.exports = function(grunt) {
         atBegin: true
       },
       dll: {
-        files: ['FAQ/Umbraco/App_Code/**/*.cs'] ,
+        files: ['FAQ/Umbraco/FAQPackage/**/*.cs'] ,
         tasks: ['msbuild:dist, copy:dll']
       },
       js: {
@@ -60,7 +60,7 @@ module.exports = function(grunt) {
     		}
         },
         dll: {
-            cwd: 'src/bin',
+            cwd: 'FAQ/Umbraco/FAQPackage/bin/debug/',
             src: 'FAQPackage.dll',
             dest: '<%= dest %>/bin/',
             expand: true
@@ -122,7 +122,7 @@ module.exports = function(grunt) {
         }
     },
     dist: {
-        src: ['src/MyPackage.csproj'],
+        src: ['FAQ/Umbraco/FAQPackage/FAQPackage.csproj'],
         options: {
             projectConfiguration: 'Debug',
             targets: ['Clean', 'Rebuild'],
@@ -132,5 +132,5 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.registerTask('default', ['concat', 'copy:converter', 'copy:html', 'copy:manifest', 'copy:models']);
+  grunt.registerTask('default', ['concat', 'copy:converter', 'copy:html', 'copy:manifest', 'copy:models','msbuild:dist', 'copy:dll']);
 };
