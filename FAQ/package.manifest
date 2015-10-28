@@ -10,5 +10,8 @@
 	}],
 	javascript: [
 		"~/app_plugins/FAQ/js/faq.js"
+	],
+	css : [
+		"~/app_plugins/FAQ/css/faq.css"
 	]
 }

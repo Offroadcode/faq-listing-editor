@@ -124,8 +124,7 @@
 		self.toolbar = ["code", "undo", "redo", "cut", "styleselect", "bold", "italic", "alignleft", "aligncenter", "alignright", "bullist", "numlist", "link", "umbmediapicker", "umbmacro", "table", "umbembeddialog"];
 		self.stylesheets = [];
 		self.dimensions = {
-			height: 400,
-			width: 600
+			height: 200
 		};
 		if (data !== undefined) {
 			if (data.toolbar !== undefined) {

@@ -130,6 +130,15 @@ angular.module("umbraco").controller("faq.listing.editor.controller", function($
 
 	// Helper Methods ////////////////////////////////////////////////////////////
 
+	$scope.isOnlyQuestion = function() {
+		var isOnlyQuestion = false;
+		if($scope.model.value.items.length < 2) {
+			isOnlyQuestion = true;
+		}
+
+		return isOnlyQuestion;
+	};
+
 	// Call $scope.init() ////////////////////////////////////////////////////////
 
 	$scope.init();
