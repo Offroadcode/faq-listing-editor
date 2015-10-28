@@ -26,6 +26,10 @@ module.exports = function(grunt) {
         files: ['FAQ/**/*.html'],
         tasks: ['copy:html', 'copy:manifest']
       },
+	  css: {
+		files: ['FAQ/**/*.css'],
+		tasks: ['copy:css']
+	  },
 	  manifest: {
 		files: ['FAQ/package.manifest'],
 		tasks: ['copy:html', 'copy:manifest']
@@ -76,6 +80,17 @@ module.exports = function(grunt) {
                 return dest + src;
               }
         },
+		css: {
+			cwd: 'FAQ/css/',
+			src: [
+				'faq.css'
+			],
+			dest: '<%= basePath %>/css/',
+			expand: true,
+			rename: function(dest, src) {
+				return dest + src;
+			}
+		},
         manifest: {
             cwd: 'FAQ/',
             src: [
