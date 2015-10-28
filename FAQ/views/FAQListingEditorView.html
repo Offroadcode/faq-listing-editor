@@ -5,8 +5,8 @@
 			<div class="controls controls-row">
 				<input type="text" ng-model="item.question" class="umb-editor umb-textstring textstring" />
 				<div ng-show="!isOnlyQuestion()" class="settings">
-					<button type="button" class="btn btn-small" ng-show="!$first"><i class="icon-arrow-up"></i></button>
-					<button type="button" class="btn btn-small" ng-show="!$last"><i class="icon-arrow-down"></i></button>
+					<button type="button" class="btn btn-small" ng-show="!$first" ng-click="sortItem($index, -1)"><i class="icon-arrow-up"></i></button>
+					<button type="button" class="btn btn-small" ng-show="!$last" ng-click="sortItem($index, 1)"><i class="icon-arrow-down"></i></button>
 					<button type="button" class="btn btn-danger btn-small" ng-click="deleteItem($index)"><i class="icon-trash"></i></button>
 				</div>
 			</div>
