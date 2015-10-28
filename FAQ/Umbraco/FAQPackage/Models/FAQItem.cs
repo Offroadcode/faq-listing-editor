@@ -33,11 +33,11 @@ namespace FAQPackage
             // Deserialize the JSON
             var jobj = (JProperty)JsonConvert.DeserializeObject(json);
             return new FAQItem()
-                       {
-                           Question = (string)jobj.Value["question"],
-                           Answer = MvcHtmlString.Create(jobj.Value<string>("answer")),
-                           Categories = jobj.Value["categories"].ToString().Split(',').ToList()
-                       };
+            { 
+                Question = (string)jobj.Value["question"],
+                Answer = MvcHtmlString.Create(jobj.Value<string>("answer")),
+                Categories = jobj.Value["categories"].ToString().Split(',').ToList()
+            };
         }
     }
 }
