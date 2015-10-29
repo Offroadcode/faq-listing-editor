@@ -1,17 +1,17 @@
 {
 	propertyEditors: [{
-		name: "FAQ Listing Editor",
-		alias: "faq.listing.editor",
+		name: "FAQ Listing",
+		alias: "FAQ.Listing",
 		editor: {
-			view: "~/app_plugins/FAQ/views/FAQListingEditorView.html",
+			view: "~/app_plugins/FAQPackage/views/FAQListingEditorView.html",
 			valueType: "JSON",
 			hideLabel: true
 		}
 	}],
 	javascript: [
-		"~/app_plugins/FAQ/js/faq.js"
+		"~/app_plugins/FAQPackage/js/faq.js"
 	],
 	css : [
-		"~/app_plugins/FAQ/css/faq.css"
+		"~/app_plugins/FAQPackage/css/faq.css"
 	]
 }

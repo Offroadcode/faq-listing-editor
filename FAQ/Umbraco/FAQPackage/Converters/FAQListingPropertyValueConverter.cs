@@ -7,7 +7,7 @@
     {
         public bool IsConverter(PublishedPropertyType propertyType)
         {
-            return propertyType.PropertyEditorAlias == "faq.listing.editor";
+            return propertyType.PropertyEditorAlias == "FAQ.Listing";
         }
 
         public object ConvertDataToSource(PublishedPropertyType propertyType, object source, bool preview)
