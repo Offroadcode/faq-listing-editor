@@ -3,3 +3,5 @@ node_modules/
 FAQ/Umbraco/packages/
 FAQ/Umbraco/FAQPackage/bin/
 FAQ/Umbraco/FAQPackage/obj/
+tmp/
+pkg/
