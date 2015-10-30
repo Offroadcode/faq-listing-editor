@@ -1,5 +1,5 @@
 {
-  "name": "FAQPackage`",
+  "name": "FAQPackage",
   "version": "0.0.1",
   "dependencies": {
     "grunt": "~0.4.2",
@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "grunt-msbuild": "^0.1.12",
-    "grunt-string-replace": "^1.2.0"
+    "grunt-string-replace": "^1.2.0",
+    "grunt-umbraco-package": "0.0.6"
   }
 }

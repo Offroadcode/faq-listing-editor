@@ -24,7 +24,7 @@ module.exports = function(grunt) {
       },
       html: {
         files: ['FAQ/**/*.html'],
-        tasks: ['copy:html', 'copy:manifest']
+        tasks: ['copy:html']
       },
 	  css: {
 		files: ['FAQ/**/*.css'],
@@ -32,7 +32,7 @@ module.exports = function(grunt) {
 	  },
 	  manifest: {
 		files: ['FAQ/package.manifest'],
-		tasks: ['copy:html', 'copy:manifest']
+		tasks: ['copy:manifest']
 	  }
     },
 
@@ -113,7 +113,29 @@ module.exports = function(grunt) {
             rename: function(dest, src) {
                 return dest + src;
             }
-       }
+       },
+       umbraco: {
+        cwd: '<%= dest %>',
+        src: '**/*',
+        dest: 'tmp/umbraco',
+        expand: true
+      }
+    },
+
+    umbracoPackage: {
+      options: {
+        name: "<%= pkgMeta.name %>",
+        version: '<%= pkgMeta.version %>',
+        url: '<%= pkgMeta.url %>',
+        license: '<%= pkgMeta.license %>',
+        licenseUrl: '<%= pkgMeta.licenseUrl %>',
+        author: '<%= pkgMeta.author %>',
+        authorUrl: '<%= pkgMeta.authorUrl %>',
+        manifest: 'config/package.xml',
+        readme: 'config/readme.txt',
+        sourceDir: 'tmp/umbraco',
+        outputDir: 'pkg',
+      }
     },
 
     jshint: {
@@ -124,6 +146,23 @@ module.exports = function(grunt) {
         src: ['app/**/*.js', 'lib/**/*.js']
       }
   },
+
+  clean: {
+      build: '<%= grunt.config("basePath").substring(0, 4) == "dist" ? "dist/**/*" : "null" %>',
+      tmp: ['tmp'],
+      html: [
+        'FAQPackage/views/*.html',
+        '!FAQPackage/views/FAQListingEditorView.html'
+        ],
+      js: [
+        'FAQPackage/controllers/*.js',
+        '!FAQPackage/controllers/faq.listing.editor.controller.js'
+      ],
+      css: [
+        'FAQPackage/css/*.css',
+        '!FAQPackage/css/faq.css'
+      ]
+    },
 
   msbuild: {
       options: {
@@ -147,5 +186,6 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.registerTask('default', ['concat', 'copy:converter', 'copy:html', 'copy:manifest', 'copy:models', 'msbuild:dist', 'copy:dll']);
+  grunt.registerTask('default', ['concat', 'copy:converter', 'copy:html', 'copy:manifest', 'copy:models', 'copy:css', 'msbuild:dist', 'copy:dll', 'clean:html', 'clean:js', 'clean:css']);
+  grunt.registerTask('umbraco', ['clean:tmp', 'default', 'copy:umbraco', 'umbracoPackage', 'clean:tmp']);
 };

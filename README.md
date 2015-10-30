@@ -1,9 +1,17 @@
 # faq-package
-A package for a custom FAQ List in the Umbraco Back Office
+The FAQ Package creates a custom property editor that can be added to the back office for a quick FAQ page.
+
+## Download for Umbraco
+
+Install the selected release through the Umbraco package installer or download and install locally from Our.
+
+After installing the package, create a new DataType and select "FAQ Listing Editor" from the property editor dropdown, then add it to a DocType of your choice.
+
+Want help with the code for the front of the site? View the gist here.
 
 ## Contribute
 
-Want to contribute to Archetype? You'll want to use Grunt (our task runner) to help you integrate with a local copy of Umbraco.
+Want to contribute to the FAQ Package? You'll want to use Grunt (our task runner) to help you integrate with a local copy of Umbraco.
 
 ### Install Dependencies
 *Requires Node.js to be installed and in your system path*
@@ -22,3 +30,4 @@ You can also watch for changes using:
 
     grunt watch
     grunt watch --target="D:\inetpub\mysite"
+
