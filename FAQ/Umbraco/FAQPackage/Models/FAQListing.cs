@@ -33,12 +33,12 @@ namespace FAQPackage
                 {
                     Question = j.Value<string>("question"),
                     Answer = MvcHtmlString.Create(j.Value<string>("answer")),
-                    Categories = j.Value<string>("categories").ToString().Split('[')[1].Split(']')[0].Replace("\"", string.Empty).Split(',').ToList()
+                    Categories = j.Value<JArray>("categories").ToObject<string[]>()
                 });
             return new FAQListing()
                        {
                            Items = items,
-                           Categories = jobj.Value<JArray>("categories").ToString().Split(',')
+                           Categories = jobj.Value<JArray>("categories").ToObject<string[]>()
                        };
         }
     }
