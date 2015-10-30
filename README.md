@@ -7,7 +7,7 @@ Install the selected release through the Umbraco package installer or download a
 
 After installing the package, create a new DataType and select "FAQ Listing Editor" from the property editor dropdown, then add it to a DocType of your choice.
 
-Want help with the code for the front of the site? View the gist here.
+Want help with the code for the front of the site? [View the gist here](https://gist.github.com/naepalm/2ce4f7314658879cda16).
 
 ## Contribute
 
@@ -30,4 +30,3 @@ You can also watch for changes using:
 
     grunt watch
     grunt watch --target="D:\inetpub\mysite"
-
