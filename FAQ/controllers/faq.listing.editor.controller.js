@@ -160,6 +160,10 @@ angular.module("umbraco").controller("faq.listing.editor.controller", function($
 		return isOnlyQuestion;
 	};
 
+	/**
+	* @method compileCategories
+	* @description Iterates through all items in $scope.model.value.items, and takes all categories in them and concats them into a list of categories.
+	*/
 	$scope.compileCategories = function() {
 		var categories = [];
 		$scope.model.value.items.forEach(function(item) {

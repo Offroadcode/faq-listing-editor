@@ -44,7 +44,6 @@ module.exports = function(grunt) {
         src: [
             'FAQ/faq.namespaces.js',
             'FAQ/models/faq.models.js',
-            'FAQ/resources/datatype.resource.js',
             'FAQ/controllers/faq.listing.editor.controller.js'
         ],
         dest: '<%= basePath %>/js/faq.js'
