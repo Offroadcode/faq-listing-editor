@@ -100,6 +100,7 @@ angular.module("umbraco").controller("faq.listing.editor.controller", function($
 	*/
 	$scope.deleteItem = function(index) {
 		$scope.model.value.items.splice(index, 1);
+		$scope.compileCategories
 	};
 
 	/**
@@ -125,18 +126,62 @@ angular.module("umbraco").controller("faq.listing.editor.controller", function($
 			properties.forEach(function(property, index) {
 				$scope.model.value.items[index].categories = property.value;
 			});
+			$scope.compileCategories();
 		}
 	};
 
+	/**
+	* @method sortItem
+	* @param {integer} index - The index of the item to be shifted.
+	* @param {integer} change - The amount of positions to shift the item by.
+	* @description Sorts an item into a new position in $scope.model.value.items.
+	*/
+	$scope.sortItem = function(index, change) {
+		$scope.model.value.items.splice((index + change), 0, $scope.model.value.items.splice(index, 1)[0]);
+		$scope.rteProperties.splice((index + change), 0, $scope.rteProperties.splice(index, 1)[0]);
+		$scope.tagProperties.splice((index + change), 0, $scope.tagProperties.splice(index, 1)[0]);
+		$scope.handleRtePropertyEditorUpdate($scope.rteProperties);
+		$scope.handleTagPropertyEditorUpdate($scope.tagProperties);
+	};
+
+
 	// Helper Methods ////////////////////////////////////////////////////////////
 
+	/**
+	* @method isOnlyQuestion
+	* @returns {bool}
+	* @description Returns true if the $scope.model.value.items length is 0 or 1. Otherwise returns false.
+	*/
 	$scope.isOnlyQuestion = function() {
 		var isOnlyQuestion = false;
-		if($scope.model.value.items.length < 2) {
+		if ($scope.model.value.items.length < 2) {
 			isOnlyQuestion = true;
 		}
-
 		return isOnlyQuestion;
+	};
+
+	/**
+	* @method compileCategories
+	* @description Iterates through all items in $scope.model.value.items, and takes all categories in them and concats them into a list of categories.
+	*/
+	$scope.compileCategories = function() {
+		var categories = [];
+		$scope.model.value.items.forEach(function(item) {
+			item.categories.forEach(function(newCategory) {
+				var categoryExists = false;
+				if (categories.length > 0) {
+					categories.forEach(function(oldCategory){
+						if (oldCategory == newCategory) {
+							categoryExists = true;
+						}
+					});
+				}
+				if (!categoryExists) {
+					categories.push(newCategory);
+				}
+			});
+		});
+		$scope.model.value.categories = categories;
 	};
 
 	// Call $scope.init() ////////////////////////////////////////////////////////
