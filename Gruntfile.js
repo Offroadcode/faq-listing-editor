@@ -24,7 +24,7 @@ module.exports = function(grunt) {
       },
       html: {
         files: ['FAQ/**/*.html'],
-        tasks: ['copy:html', 'copy:manifest']
+        tasks: ['copy:html']
       },
 	  css: {
 		files: ['FAQ/**/*.css'],
@@ -32,15 +32,8 @@ module.exports = function(grunt) {
 	  },
 	  manifest: {
 		files: ['FAQ/package.manifest'],
-		tasks: ['copy:html', 'copy:manifest']
-    },
-
-    umbraco: {
-        cwd: '<%= dest %>',
-        src: '**/*',
-        dest: 'tmp/umbraco',
-        expand: true
-      }
+		tasks: ['copy:manifest']
+	  }
     },
 
     concat: {
