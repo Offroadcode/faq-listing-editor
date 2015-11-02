@@ -1,23 +1,2 @@
-.faq-package {
-    background: #f9f9f9;
-    overflow: hidden;  
-}
-
-.faq-package .question {
-    margin: 0 10px 10px;
-    padding: 10px;
-}
-
-.faq-package .question:nth-child(even) {
-    background: #fefefe;
-}
-
-.faq-package .question .settings {
-    width: calc(30% - 4px);
-    display: inline-block;
-    text-align: right;
-}
-
-.faq-package .usky-grid {
-    text-align: center;
-}
+.faq-package{background:#f9f9f9;overflow:hidden}.faq-package .question{margin:0 10px 10px;padding:10px}.faq-package .question:nth-child(even){background:#fefefe}.faq-package .question .settings{width:calc(30% - 4px);display:inline-block;text-align:right}.faq-package .usky-grid{text-align:center}
+/*# sourceMappingURL=faq.css.map */

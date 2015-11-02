@@ -1,0 +1,23 @@
+.faq-package {
+    background: #f9f9f9;
+    overflow: hidden;
+
+    .question {
+        margin: 0 10px 10px;
+        padding: 10px;
+
+        &:nth-child(even) {
+            background: #fefefe;
+        }
+
+        .settings {
+            width: calc(30% - 4px);
+            display: inline-block;
+            text-align: right;
+        }
+    }
+
+    .usky-grid {
+        text-align: center;
+    }
+}

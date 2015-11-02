@@ -26,6 +26,10 @@ module.exports = function(grunt) {
         files: ['FAQ/**/*.html'],
         tasks: ['copy:html']
       },
+	  sass: {
+		files: ['FAQ/**/*.scss'],
+		tasks: ['sass']
+	  },
 	  css: {
 		files: ['FAQ/**/*.css'],
 		tasks: ['copy:css']
@@ -145,6 +149,17 @@ module.exports = function(grunt) {
         src: ['app/**/*.js', 'lib/**/*.js']
       }
   },
+  
+  sass: {
+		dist: {
+			options: {
+				style: 'compressed'
+			},
+			files: {
+				'FAQ/css/faq.css': 'FAQ/sass/faq.scss'
+			}
+		}
+	},
 
   clean: {
       build: '<%= grunt.config("basePath").substring(0, 4) == "dist" ? "dist/**/*" : "null" %>',
@@ -160,7 +175,11 @@ module.exports = function(grunt) {
       css: [
         'FAQPackage/css/*.css',
         '!FAQPackage/css/faq.css'
-      ]
+      ],
+	  sass: [
+		'FAQ/sass/*.scss',
+		'!FAQ/sass/faq.scss'
+	  ]
     },
 
   msbuild: {
@@ -185,6 +204,6 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.registerTask('default', ['concat', 'copy:converter', 'copy:html', 'copy:manifest', 'copy:models', 'copy:css', 'msbuild:dist', 'copy:dll', 'clean:html', 'clean:js', 'clean:css']);
+  grunt.registerTask('default', ['concat', 'sass:dist', 'copy:converter', 'copy:html', 'copy:manifest', 'copy:models', 'copy:css', 'msbuild:dist', 'copy:dll', 'clean:html', 'clean:js', 'clean:css']);
   grunt.registerTask('umbraco', ['clean:tmp', 'default', 'copy:umbraco', 'umbracoPackage', 'clean:tmp']);
 };
