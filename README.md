@@ -1,17 +1,17 @@
-# faq-package
-The FAQ Package creates a custom property editor that can be added to the back office for a quick FAQ page.
+# FAQ Listing Editor for Umbraco
+The FAQ Listing Editor creates a custom property editor that can be added to the Umbraco back office for a quick FAQ page.
 
 ## Download for Umbraco
 
 Install the selected release through the Umbraco package installer or download and install locally from Our.
 
-After installing the package, create a new DataType and select "FAQ Listing Editor" from the property editor dropdown, then add it to a DocType of your choice.
+After installing the package, create a new DataType and select "FAQ Listing" from the property editor dropdown, then add it to a DocType of your choice.
 
 Want help with the code for the front of the site? [View the gist here](https://gist.github.com/naepalm/2ce4f7314658879cda16).
 
 ## Contribute
 
-Want to contribute to the FAQ Package? You'll want to use Grunt (our task runner) to help you integrate with a local copy of Umbraco.
+Want to contribute to the FAQ Listing Editor? You'll want to use Grunt (our task runner) to help you integrate with a local copy of Umbraco.
 
 ### Install Dependencies
 *Requires Node.js to be installed and in your system path*

@@ -1,4 +1,4 @@
-﻿namespace FAQPackage
+﻿namespace FAQ
 {
     using Umbraco.Core.Models.PublishedContent;
     using Umbraco.Core.PropertyEditors;

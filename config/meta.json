@@ -1,7 +1,7 @@
 {
-	"name": "FAQPackage",
+	"name": "FAQListing",
 	"version": "1.0.0",
-	"url": "http://github.com/Offroadcode/faq-package",
+	"url": "http://github.com/Offroadcode/faq-listing-editor",
 	"author": "Offroadcode - Janae Cram - Kyle Weems - Et. Al.",
 	"authorUrl": "http://offroadcode.com/",
 	"license": "MIT",

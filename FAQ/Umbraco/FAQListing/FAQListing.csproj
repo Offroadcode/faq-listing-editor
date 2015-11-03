@@ -7,8 +7,8 @@
     <ProjectGuid>{786ED549-FD1F-4AF6-9704-AF132E9598D9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FAQPackage</RootNamespace>
-    <AssemblyName>FAQPackage</AssemblyName>
+    <RootNamespace>FAQ</RootNamespace>
+    <AssemblyName>FAQListing</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

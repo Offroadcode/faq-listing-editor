@@ -1,4 +1,4 @@
-namespace FAQPackage
+namespace FAQ
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -13,15 +13,33 @@ namespace FAQPackage
     /// </summary>
     public class FAQItem
     {
+        /// <summary>
+        /// Gets or sets the question.
+        /// </summary>
         [JsonProperty("question")]
         public string Question { get; set; }
 
+        /// <summary>
+        /// Gets or sets the answer.
+        /// </summary>
         [JsonProperty("answer")]
         public IHtmlString Answer { get; set; }
 
+        /// <summary>
+        /// Gets or sets the categories.
+        /// </summary>
         [JsonProperty("categories")]
         public IEnumerable<string> Categories { get; set; }
 
+        /// <summary>
+        /// Deserializes the json into an FAQ Item.
+        /// </summary>
+        /// <param name="json">
+        /// The json <see cref="string"/>.
+        /// </param>
+        /// <returns>
+        /// The <see cref="FAQItem"/>.
+        /// </returns>
         public static FAQItem Deserialize(string json)
         {
             // Validate the JSON

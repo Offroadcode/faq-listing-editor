@@ -15,7 +15,7 @@ module.exports = function(grunt) {
         atBegin: true
       },
       dll: {
-        files: ['FAQ/Umbraco/FAQPackage/**/*.cs'] ,
+        files: ['FAQ/Umbraco/FAQListing/**/*.cs'] ,
         tasks: ['msbuild:dist', 'copy:dll']
       },
       js: {
@@ -55,20 +55,9 @@ module.exports = function(grunt) {
     },
 
     copy: {
-        converter: {
-            cwd: 'FAQ/Umbraco/App_Code/Converters/',
-    		src: [
-    			'FAQListingPropertyValueConverter.cs'
-    		],
-    		dest: '<%= dest %>/App_Code/Converters/',
-    		expand: true,
-    		rename: function(dest, src) {
-    			return dest + src;
-    		}
-        },
         dll: {
-            cwd: 'FAQ/Umbraco/FAQPackage/bin/debug/',
-            src: 'FAQPackage.dll',
+            cwd: 'FAQ/Umbraco/FAQListing/bin/debug/',
+            src: 'FAQListing.dll',
             dest: '<%= dest %>/bin/',
             expand: true
         },
@@ -105,18 +94,6 @@ module.exports = function(grunt) {
                 return dest + src;
             }
         },
-        models: {
-            cwd: 'FAQ/Umbraco/App_Code/Models/',
-            src: [
-                'FAQItem.cs',
-                'FAQListing.cs'
-            ],
-            dest: '<%= dest %>/App_Code/Models/',
-            expand: true,
-            rename: function(dest, src) {
-                return dest + src;
-            }
-       },
        umbraco: {
         cwd: '<%= dest %>',
         src: '**/*',
@@ -165,16 +142,16 @@ module.exports = function(grunt) {
       build: '<%= grunt.config("basePath").substring(0, 4) == "dist" ? "dist/**/*" : "null" %>',
       tmp: ['tmp'],
       html: [
-        'FAQPackage/views/*.html',
-        '!FAQPackage/views/FAQListingEditorView.html'
+        'FAQListing/views/*.html',
+        '!FAQListing/views/FAQListingEditorView.html'
         ],
       js: [
-        'FAQPackage/controllers/*.js',
-        '!FAQPackage/controllers/faq.listing.editor.controller.js'
+        'FAQListing/controllers/*.js',
+        '!FAQListing/controllers/faq.listing.editor.controller.js'
       ],
       css: [
-        'FAQPackage/css/*.css',
-        '!FAQPackage/css/faq.css'
+        'FAQListing/css/*.css',
+        '!FAQListing/css/faq.css'
       ],
 	  sass: [
 		'FAQ/sass/*.scss',
@@ -194,7 +171,7 @@ module.exports = function(grunt) {
         }
     },
     dist: {
-        src: ['FAQ/Umbraco/FAQPackage/FAQPackage.csproj'],
+        src: ['FAQ/Umbraco/FAQListing/FAQListing.csproj'],
         options: {
             projectConfiguration: 'Debug',
             targets: ['Clean', 'Rebuild'],
@@ -204,6 +181,6 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.registerTask('default', ['concat', 'sass:dist', 'copy:converter', 'copy:html', 'copy:manifest', 'copy:models', 'copy:css', 'msbuild:dist', 'copy:dll', 'clean:html', 'clean:js', 'clean:css']);
+  grunt.registerTask('default', ['concat', 'sass:dist', 'copy:html', 'copy:manifest', 'copy:css', 'msbuild:dist', 'copy:dll', 'clean:html', 'clean:js', 'clean:css']);
   grunt.registerTask('umbraco', ['clean:tmp', 'default', 'copy:umbraco', 'umbracoPackage', 'clean:tmp']);
 };

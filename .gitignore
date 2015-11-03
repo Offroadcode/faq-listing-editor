@@ -1,9 +1,9 @@
 dist/
 node_modules/
 FAQ/Umbraco/packages/
-FAQ/Umbraco/FAQPackage/bin/
-FAQ/Umbraco/FAQPackage/obj/
+FAQ/Umbraco/FAQListing/bin/
+FAQ/Umbraco/FAQListing/obj/
 tmp/
 pkg/
 Umbraco.Test/
-.sass-cache/33a64f50be5ead53b8af1c54336d20ed90a38f1c/faq.scssc
+.sass-cache/
