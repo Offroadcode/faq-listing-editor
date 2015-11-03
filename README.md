@@ -1,6 +1,8 @@
 # ![Package Logo](https://docs.google.com/uc?id=0B1BeRPYxbA_SVFdqSXd4N3ZNVXM&export=download) FAQ Listing Editor for Umbraco
 The FAQ Listing Editor creates a custom property editor that can be added to the Umbraco back office for a quick FAQ page.
 
+![FAQ Listing Screenshot](https://223c6de8440b7dbb1ad7e481860123a98f21c596.googledrive.com/host/0B1BeRPYxbA_Scjhzc0U2djZiajg/faq-listing-screenshot.png)
+
 ## Download for Umbraco
 
 Install the selected release through the Umbraco package installer or download and install locally from Our.
