@@ -3,15 +3,15 @@
 		name: "FAQ Listing",
 		alias: "FAQ.Listing",
 		editor: {
-			view: "~/app_plugins/FAQPackage/views/FAQListingEditorView.html",
+			view: "~/app_plugins/FAQListing/views/FAQListingEditorView.html",
 			valueType: "JSON",
 			hideLabel: true
 		}
 	}],
 	javascript: [
-		"~/app_plugins/FAQPackage/js/faq.js"
+		"~/app_plugins/FAQListing/js/faq.js"
 	],
 	css : [
-		"~/app_plugins/FAQPackage/css/faq.css"
+		"~/app_plugins/FAQListing/css/faq.css"
 	]
 }
